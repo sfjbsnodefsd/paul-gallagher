@@ -67,7 +67,7 @@ app.post('/addemployees',(req,res) => {
 });
 
 //update employee
-app.post('/updateemployees',(req,res) => {
+app.put('/updateemployees',(req, res) => {
     let emp = req.body;
     var sql = "SET @EmpID = ?; SET @Name = ?; SET @EmpCode = ?; SET @salary = ?; \
     CALL EmployeeAddOrEdit(@EmpID,@Name,@EmpCode,@salary);";
