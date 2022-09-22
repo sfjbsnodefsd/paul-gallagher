@@ -51,12 +51,13 @@ app.delete('/deleteemployees/:id',(req,res) =>{
 
     })
 })
+
 app.post('/addemployees',(req,res) => {
     var sql = "SET @EmpID = ?; SET @Name = ?; SET @EmpCode = ?; SET @salary = ?; \
     CALL EmployeeAddOrEdit(@EmpID,@Name,@EmpCode,@salary);";
-    mysqlConnection.query(sql,[emp.EmpID, emp.Name, emp.EmpCode, emp.salary], [req.params.id],(err,rows,fields) =>{
+    mysqlConnection.query("DELETE FROM Employee WHERE EmpID = ?",[req.params.id],(err,rows,fields) =>{
         if(!err) {
-           res.send(rows);
+           res.send("Deleted success")
         }else console.log(err)
 
     })
