@@ -52,12 +52,30 @@ app.delete('/deleteemployees/:id',(req,res) =>{
     })
 })
 app.post('/addemployees',(req,res) => {
+    let emp = req.body;
     var sql = "SET @EmpID = ?; SET @Name = ?; SET @EmpCode = ?; SET @salary = ?; \
     CALL EmployeeAddOrEdit(@EmpID,@Name,@EmpCode,@salary);";
     mysqlConnection.query(sql,[emp.EmpID, emp.Name, emp.EmpCode, emp.salary], [req.params.id],(err,rows,fields) =>{
-        if(!err) {
-           res.send(rows);
-        }else console.log(err)
+        if(!err) rows.ForEach(element => {
+            if (element.constructor == Array)
+           res.send("Employee Id of the inserted empouee is : " +element[0].EmpID);
+        });
+        
+        else console.log(err)
 
     })
-})
+});
+
+//update employee
+app.post('/updateemployees',(req,res) => {
+    let emp = req.body;
+    var sql = "SET @EmpID = ?; SET @Name = ?; SET @EmpCode = ?; SET @salary = ?; \
+    CALL EmployeeAddOrEdit(@EmpID,@Name,@EmpCode,@salary);";
+    mysqlConnection.query(sql,[emp.EmpID, emp.Name, emp.EmpCode, emp.salary], [req.params.id],(err,rows,fields) =>{
+        if(!err) 
+           res.send("Empoyee updated succesfully");
+       
+        
+        else console.log(err)
+    });
+    })
