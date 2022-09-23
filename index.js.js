@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-const express = require("express");
-const { default: mongoose } = require("mongoose");
-const coursesRouter = require("./routes/courses")
-
-
-require("dotenv").config();
-
-
-
-const app = express();
-
-app.use(coursesRouter);
-
-mongoose.connect("process.env.DB_CONNECTION_URL",() =>{
-    console.log("you've done it! connection Successful");
-})
-app.listen(process.env.PORT,() => {
-    console.log("server is starting you can do this");
-})
-=======
 const mysql = require('mysql');
 const express = require("express")
 var app = express()
@@ -30,7 +9,8 @@ var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'employeedb'
+    database: 'employeedb',
+    multipleStatements: true
 })
 mysqlConnection.connect((err) => {
     if (!err){
@@ -72,32 +52,34 @@ app.delete('/deleteemployees/:id',(req,res) =>{
 
     })
 })
-app.post('/addemployees',(req,res) => {
+
+//insert an employee
+app.post("/addemployees" , (req, res) => {
     let emp = req.body;
     var sql = "SET @EmpID = ?; SET @Name = ?; SET @EmpCode = ?; SET @salary = ?; \
-    CALL EmployeeAddOrEdit(@EmpID,@Name,@EmpCode,@salary);";
-    mysqlConnection.query(sql,[emp.EmpID, emp.Name, emp.EmpCode, emp.salary], [req.params.id],(err,rows,fields) =>{
-        if(!err) rows.ForEach(element => {
-            if (element.constructor == Array)
-           res.send("Employee Id of the inserted empouee is : " +element[0].EmpID);
+    CALL EmployeeAddOrEdit(@EmpID,@Name,@EmpCode,@Salary);";
+    mysqlConnection.query(sql,[emp.EmpID, emp.Name, emp.EmpCode, emp.Salary] , (err,rows,fields) => {
+        if(!err) rows.forEach(element => {
+            if(element.constructor == Array)
+            res.send("Employee Id of the inserted employee is : " +element[0].EmpID);
         });
-        
-        else console.log(err)
-
+        //    res.send(rows)
+         else console.log(err);
     })
 });
 
-//update employee
-app.put('/updateemployees',(req, res) => {
+
+// update employee 
+app.put("/updateemployees" , (req, res) => {
     let emp = req.body;
     var sql = "SET @EmpID = ?; SET @Name = ?; SET @EmpCode = ?; SET @salary = ?; \
-    CALL EmployeeAddOrEdit(@EmpID,@Name,@EmpCode,@salary);";
-    mysqlConnection.query(sql,[emp.EmpID, emp.Name, emp.EmpCode, emp.salary], [req.params.id],(err,rows,fields) =>{
+    CALL EmployeeAddOrEdit(@EmpID,@Name,@EmpCode,@Salary);";
+    mysqlConnection.query(sql,[emp.EmpID, emp.Name, emp.EmpCode, emp.Salary] , (err,rows,fields) => {
         if(!err) 
-           res.send("Empoyee updated succesfully");
-       
-        
-        else console.log(err)
-    });
+        res.send("Employee updated sucessfully")
+        //    res.send(rows)
+         else console.log(err);
     })
->>>>>>> 20ac7c1f33c91e65f39bcec5aeb941f062c48e65
+});
+
+
