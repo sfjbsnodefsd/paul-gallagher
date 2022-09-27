@@ -15,4 +15,4 @@ const Course = mongoose.Schema({
     },
     active:Boolean
 })
-module.exports=mongoose.model("course",Course)
+module.exports=mongoose.model("courses",Course)
