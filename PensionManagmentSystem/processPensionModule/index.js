@@ -1,10 +1,10 @@
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose');
-const data = require('../Authorization service/data')
+//const data = require('../auth-service/data')
 const fs = require('fs')
-const pensioner_details = require('/File.csv')
-fs.readFile('/File.csv')
+//const pensioner_details = require('./File.csv')
+//fs.readFile('./File.csv')
 
 mongoose.connect(
     "mongodb://localhost:27017/pension-process",
@@ -45,7 +45,7 @@ mongoose.connect(
 
 
 
-app.listen(5001, (req, res) => {
+app.listen(5006, (req, res) => {
     console.log('This is your Auth service on 5001')
 
 })

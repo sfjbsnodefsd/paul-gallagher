@@ -1,19 +1,19 @@
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose');
-const data = require('../Authorization service/data')
+//const data = require('../auth-service/data')
 const fs = require('fs')
-const pensioner_details = require('/File.csv')
-fs.readFile('/File.csv')
+//const pensioner_details = require('../File.csv')
+//fs.readFile('../File.csv')
 
 mongoose.connect(
-    "mongodb://localhost:27017/pension-process",
+    "mongodb://localhost:27017/pensioner-details",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     },
     () => {
-      console.log(`pension-process DB is Connected`);
+      console.log(`pensioner-details DB is Connected`);
     }
   );
   
@@ -35,10 +35,9 @@ mongoose.connect(
     return res.json(singlePensioner)
   })
   
-  app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
+  /*app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
     console.log(req.params)
-    res.send('hello world')
-  })
+    res.send('hello world')*/
 
 
 
@@ -46,6 +45,6 @@ mongoose.connect(
 
 
 app.listen(5001, (req, res) => {
-    console.log('This is your Auth service on 5001')
+    console.log('This is your pensioner details service on 5001')
 
 })
