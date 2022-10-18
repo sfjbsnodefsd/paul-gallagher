@@ -1,10 +1,6 @@
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose');
-//const data = require('../auth-service/data')
-const fs = require('fs')
-//const pensioner_details = require('./File.csv')
-//fs.readFile('./File.csv')
 
 mongoose.connect(
     "mongodb://localhost:27017/pension-process",
