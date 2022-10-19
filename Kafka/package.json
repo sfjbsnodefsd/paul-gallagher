@@ -1,12 +1,18 @@
 {
-  "name": "kafka",
+  "name": "kafka-demo-app",
   "version": "1.0.0",
-  "description": "to start the docker image of kafka \r  docker-compose up",
+  "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start:producer": "node ./producer/index.js",
     "start:consumer": "node ./consumer/index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "audit": "^0.0.6",
+    "avsc": "^5.7.6",
+    "node-rdkafka": "^2.14.0"
+  }
 }
