@@ -1,8 +1,6 @@
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose');
-//const data = require('../auth-service/data')
-//const fs = require('fs')
 const csv =require("csvtojson");
 const pensionerSchema = require('./pensionerSchema');
 
@@ -49,22 +47,20 @@ mongoose.connect(
     }
 
   })
-
+  app.get("/pensioner/:aadhaar", async (req, res) => {
+    const aadhaar = req.params.aadhaar;
   
-app.get('/pensioner/:Aadhaar', (req, res) => {
-  const { Aadhaar } = req.params
+    try {
+      const pensioner = await pensionerSchema.findOne({Aadhaar : aadhaar }, req.body);
+      res.json(pensioner);
+    } catch (error) {
+      res.json(error);
+    }
+  });
+  
 
-  const singlePensioner = pensioners.PensionerDetail.find(
-    (pensioner) => pensioner.Aadhaar === Number(Aadhaar)
-  )
-  if (!singlePensioner) {
-    return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
-  }
-
-  return res.json(singlePensioner)
-});
 
 app.listen(5001, (req, res) => {
     console.log('This is your pensioner details service on 5001')
 
-})
+}) 
