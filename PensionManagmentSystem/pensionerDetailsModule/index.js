@@ -50,14 +50,20 @@ mongoose.connect(
   app.get("/pensioner/:aadhaar", async (req, res) => {
     const aadhaar = req.params.aadhaar;
   
-    try {
+   try {
       const pensioner = await pensionerSchema.findOne({Aadhaar : aadhaar }, req.body);
+      if (!pensioner) {
+        return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
+      }
       res.json(pensioner);
-    } catch (error) {
-      res.json(error);
+      } catch (err) {
+      return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
     }
-  });
+  }); 
   
+ 
+
+
 
 
 app.listen(5001, (req, res) => {
