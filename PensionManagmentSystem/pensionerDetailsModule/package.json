@@ -9,6 +9,7 @@
   "author": "Paul Gallagher",
   "license": "ISC",
   "dependencies": {
-    "all": "^0.0.0"
+    "all": "^0.0.0",
+    "csvtojson": "^2.0.10"
   }
 }

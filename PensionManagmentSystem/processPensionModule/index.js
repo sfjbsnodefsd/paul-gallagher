@@ -18,11 +18,11 @@ mongoose.connect(
   })
   
  
-  app.get('/api/pensioner/:Aadhaar', (req, res) => {
+  app.get('/pensioner/:Aadhaar', (req, res) => {
     const { Aadhaar } = req.params
   
-    const singlePensioner = data.pensioner_details.find(
-      (pensioner) => pensioner.Aadhaar === Number(Aadhaar)
+    const singlePensioner = data.PensionerDetail.find(
+      (User) => User.Aadhaar === Number(Aadhaar)
     )
     if (!singlePensioner) {
       return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
@@ -42,6 +42,6 @@ mongoose.connect(
 
 
 app.listen(5006, (req, res) => {
-    console.log('This is your Auth service on 5001')
+    console.log('This is your Pension-Process service on 5006')
 
 })
