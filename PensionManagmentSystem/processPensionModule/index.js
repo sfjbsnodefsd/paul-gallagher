@@ -18,7 +18,7 @@ mongoose.connect(
   })
   
  
-  app.get('/pensioner/:Aadhaar', (req, res) => {
+  /*app.get('/pensioner/:Aadhaar', (req, res) => {
     const { Aadhaar } = req.params
   
     const singlePensioner = data.PensionerDetail.find(
@@ -29,13 +29,25 @@ mongoose.connect(
     }
   
     return res.json(singlePensioner)
-  })
+  }) */
   
-  app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
+  app.get('/:productID/reviews/:reviewID', (req, res) => {
     console.log(req.params)
     res.send('hello world')
   })
-
+  app.get("/pensioner/:aadhaar", async (req, res) => {
+    const aadhaar = req.params.aadhaar;
+  
+    try {
+      const pensioner = await pensionerSchema.findOne({ Aadhaar: aadhaar }, req.body);
+      if (!pensioner) {
+        return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
+      }
+      res.json(pensioner);
+    } catch (err) {
+      return res.json(err)
+    }
+  });
 
 
 
