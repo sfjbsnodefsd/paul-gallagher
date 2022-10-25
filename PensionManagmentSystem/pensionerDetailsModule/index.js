@@ -1,25 +1,25 @@
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose');
-const csv =require("csvtojson");
+const csv = require("csvtojson");
 const pensionerSchema = require('./pensionerSchema');
 
 mongoose.connect(
-    "mongodb://localhost:27017/pensioner-details",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    },
-    () => {
-      console.log(`pensioner-details DB is Connected`);
-    }
-  );
-  
-  csv()
+  "mongodb://localhost:27017/pensioner-details",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => {
+    console.log(`pensioner-details DB is Connected`);
+  }
+);
+
+csv()
   .fromFile("./Data/details.csv")
   .then(async (response) => {
     //console.log(response);
-    
+
     for (var x = 0; x < response.length; x++) {
 
       //check whether pensioner details already added
@@ -39,7 +39,7 @@ mongoose.connect(
         BankName: response[x].BankName,
         BankNumber: response[x].BankNumber,
         PublicOrPrivate: response[x].PublicOrPrivate
-        },
+      },
       );
 
       importPensionerDetail.save();  //save pensioner details using PensionerDetail schema object
@@ -47,26 +47,27 @@ mongoose.connect(
     }
 
   })
-  app.get("/pensioner/:aadhaar", async (req, res) => {
-    const aadhaar = req.params.aadhaar;
-  
-   try {
-      const pensioner = await pensionerSchema.findOne({Aadhaar : aadhaar }, req.body);
-      if (!pensioner) {
-        return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
-      }
-      res.json(pensioner);
-      } catch (err) {
+app.get("/pensioner/:aadhaar", async (req, res) => {
+  const aadhaar = req.params.aadhaar;
+
+  try {
+    const pensioner = await pensionerSchema.findOne({ Aadhaar: aadhaar }, req.body);
+    if (!pensioner) {
       return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
     }
-  }); 
-  
- 
+    res.json(pensioner);
+
+  } catch (err) {
+    return res.json(err)
+  }
+}); 
+
+
 
 
 
 
 app.listen(5001, (req, res) => {
-    console.log('This is your pensioner details service on 5001')
+  console.log('This is your pensioner details service on 5001')
 
 }) 
