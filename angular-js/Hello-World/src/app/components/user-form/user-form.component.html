@@ -1,0 +1,17 @@
+<h2>{{title}}</h2>
+
+
+<input type="text" [(ngModel)]="Name" placeholder="Enter your Name" />Name
+<br />
+<input  type="number"[(ngModel)]="Age" placeholder="Enter your Age" />Age
+<br />
+gender
+<br />
+//<div>
+     <input type="radio" [(ngModel)]="gender" id="gender" for="gender" value="male">Male
+     <input type="radio" [(ngModel)]="gender" id="gender" for="gender" value="female">Female
+
+</div>
+
+
+<button (click)="save()"></button>Submit</button>
