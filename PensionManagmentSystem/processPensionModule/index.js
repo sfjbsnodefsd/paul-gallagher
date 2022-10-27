@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const pensionerSchema = require('../pensionerDetailsModule/pensionerSchema');
 const csv = require('csvtojson')
 const isAuthenticated = require("../isAuthenticated")
+const request = require("request")
 app.use(express.json());
 
 
@@ -17,73 +18,96 @@ mongoose.connect(
       console.log(`pensioner-details DB is Connected`);
     }
   );
-  
-  const  createPension = (pensioners, aadhaar) => {
-    let newPensionAmmount = 0;
-    //let bankServiceCharge = 0;
-    
-    //for(t=0; t<pensioners.length; ++t) {
-        if(pensioners[0].SelfOrFamily=="self"){
-            newPensionAmmount = ((pensioners[0].Salary + pensioners[0].Allowances)*.8);
-        }
-        else if (pensioners[0].SelfOrFamily=="family"){
-            newPensionAmmount=((pensioners[0].Salary + pensioners[0].Allowances)*.5);
-        }
-        
-        if(pensioners[0].bank_detail.PublicOrPrivate=="public") {
-            bankServiceCharge = 500;
-        }
-        else {
-            bankServiceCharge = 550;
-        }
-        const newPension = new Pensioner({
-            pensioners,
-            //user: aadhaar,
-            pensionAmmount:newPensionAmmount,
-            bankServiceCharge:500
+  app.post("/ProcessPension", async (req, res) => {
+    const { aadhaar } = req.body;
+       
+    try {
+        const pensioner = await getPensionDetails(aadhaar);
+        const { Salary, Allowances, SelfOrFamily, PublicOrPrivate } = pensioner;
+        const percentage = getPercentage(SelfOrFamily);
+
+        const _pensionAmount = (percentage * Salary) + Allowances;
+        const _serviceCharge = getServiceCharge(PublicOrPrivate);
+        //return result
+        res.status(200).json({
+            pensionAmount: _pensionAmount,
+            bankServiceCharge: _serviceCharge
         });
-        updatedPension = newPensionAmmount;
 
-        newPension.save();
-        return newPension;
 
+
+    } catch (err) {
+        throw err;
     }
-  
-  
+
+});
+
+
+
+
+
+
  
-  /*app.get('/pensioner/:Aadhaar', (req, res) => {
-    const { Aadhaar } = req.params
   
-    const singlePensioner = data.PensionerDetail.find(
-      (User) => User.Aadhaar === Number(Aadhaar)
-    )
-    if (!singlePensioner) {
-      return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
+  const getPensionDetails = (aadhaar) => {
+
+    return new Promise((resolve,reject) =>{
+        try {
+           
+            const url = `http://localhost:5001/pensioner/${aadhaar}`
+            request.get(url, { json: true }, (err, result, body) => {
+                if (err) {
+                    console.log(err);
+                    reject(err) ;
+                }
+                else
+                    resolve(body) ;
+            });
+        } catch (err) {
+            console.log(err);
+            reject(err) ;
+        }
+    
+    });
+  };
+  const getPercentage = (SelfOrFamily) => {
+    var percentage = 0;
+    if (SelfOrFamily !== null) {
+        switch (SelfOrFamily)
+      
+        {
+            case "Self":
+                percentage = Salary / 80;
+                break;
+            case "Family":
+                percentage = Salary / 50;
+                break;
+
+        }
     }
-  
-    return res.json(singlePensioner)
-  }) */
-  
- app.get("/pensioner/:Aadhaar",isAuthenticated, async (req, res) => {
-  const aadhaar = req.params.aadhaar;
+    return percentage;
+}
 
-  try {
-    const pensioner = await pensionerSchema.findOne({ Aadhaar: aadhaar }, req.body);
-    if (!pensioner) {
-      return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
+const getServiceCharge = (PublicOrPrivate) => {
+    let serviceCharge;
+    if (PublicOrPrivate) {
+        switch (PublicOrPrivate.toString().toUpperCase()) {
+            case "PRIVATE":
+                serviceCharge = 550;
+                break;
+            case "PUBLIC":
+                serviceCharge = 500;
+                break;
+
+
+        }
+
     }
-    res.json(pensioner);
-
-  } catch (err) {
-    return res.json(err)
-  }
-}); 
-
-
+    return serviceCharge;
+}
 
 
 
 app.listen(5006, (req, res) => {
     console.log('This is your Pension-Process service on 5006')
-
-})
+});
