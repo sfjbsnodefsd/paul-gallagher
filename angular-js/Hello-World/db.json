@@ -1,0 +1,12 @@
+
+
+{
+    "users":[
+        {
+            "name":"Paul",
+            "age":38,
+            "gender":"Male",
+            "id":1
+        }
+    ]
+}

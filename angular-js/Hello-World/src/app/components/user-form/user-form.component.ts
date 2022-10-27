@@ -6,14 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
-title = "Please enter your details "
-Name = "";
-Age = 0;
-gender = "male";
+title =  "Fill out the form below";
+// to access the data of this variable in out html file use {{variable name}}
+name = " ";
+age= 0 ;
+gender = " "; 
+
 
 save() {
-  console.log(this.Name + " " + this.Age + " " + this.gender);
+  console.log(this.name + " " + this.age + " " + this.gender);
+  
 }
+
   constructor() { }
 
   ngOnInit(): void {
