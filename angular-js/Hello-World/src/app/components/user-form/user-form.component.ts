@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserFormComponent implements OnInit {
 title = "Please enter your details "
+Name = "";
+Age = 0;
+gender = "male";
+
+save() {
+  console.log(this.Name + " " + this.Age + " " + this.gender);
+}
   constructor() { }
 
   ngOnInit(): void {
