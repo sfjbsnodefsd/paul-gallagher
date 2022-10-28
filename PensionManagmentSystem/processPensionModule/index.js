@@ -77,10 +77,10 @@ mongoose.connect(
       
         {
             case "Self":
-                percentage = Salary / 80;
+                percentage =  .80;
                 break;
             case "Family":
-                percentage = Salary / 50;
+                percentage =  .50;
                 break;
 
         }
@@ -89,7 +89,7 @@ mongoose.connect(
 }
 
 const getServiceCharge = (PublicOrPrivate) => {
-    let serviceCharge;
+    var serviceCharge = null;
     if (PublicOrPrivate) {
         switch (PublicOrPrivate.toString().toUpperCase()) {
             case "PRIVATE":
