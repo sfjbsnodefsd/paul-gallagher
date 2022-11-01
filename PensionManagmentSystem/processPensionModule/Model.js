@@ -32,7 +32,8 @@ const PensionerDetailSchema = new Schema({
   },
   SelfOrFamily: { 
     type: String,
-    required: true 
+    required: true,
+    uppercase: true  
   },
   BankName: { 
     type: String,
@@ -44,7 +45,8 @@ const PensionerDetailSchema = new Schema({
   },
   PublicOrPrivate: { 
     type: String,
-    required: true 
+    required: true,
+    uppercase: true
   }
   },
 );

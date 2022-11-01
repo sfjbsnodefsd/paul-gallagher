@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose');
-const pensionerSchema = require('../pensionerDetailsModule/pensionerSchema');
+const pensionerSchema = require('./Model');
 const csv = require('csvtojson')
 const isAuthenticated = require("../isAuthenticated")
 const request = require("request")
@@ -18,27 +18,39 @@ mongoose.connect(
       console.log(`pensioner-details DB is Connected`);
     }
   );
-  app.post("/ProcessPension", async (req, res) => {
-    const { aadhaar } = req.body;
-       
+  app.get("/ProcessPension/:aadhaar", async (req, res) => {
+    const { aadhaar } = req.params.aadhaar;
     try {
-        const pensioner = await getPensionDetails(aadhaar);
+        const pensioner = await pensionerSchema.findOne({ Aadhaar: aadhaar }, req.body);
+        if (!pensioner) {
+          return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
+        }
+        console.log(pensioner)
+        res.json(pensioner);
+    
+      } catch (err) {
+        return res.json(err)
+      }
+       
+    /*try {
+        const pensioner = await getPensionDetails(aadhaar) 
         const { Salary, Allowances, SelfOrFamily, PublicOrPrivate } = pensioner;
         const percentage = getPercentage(SelfOrFamily);
+        console.log(SelfOrFamily)
 
         const _pensionAmount = (percentage * Salary) + Allowances;
         const _serviceCharge = getServiceCharge(PublicOrPrivate);
         //return result
-        res.status(200).json({
-            pensionAmount: _pensionAmount,
-            data: _serviceCharge
-        });
+        res.status(200).json(
+             _pensionAmount,
+             _serviceCharge
+        );
 
-
+    
 
     } catch (err) {
         throw err;
-    }
+    }*/
 
 });
 

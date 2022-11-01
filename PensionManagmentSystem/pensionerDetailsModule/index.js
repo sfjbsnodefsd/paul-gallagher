@@ -55,6 +55,7 @@ app.get("/pensioner/:aadhaar", async (req, res) => {
     if (!pensioner) {
       return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
     }
+    console.log(pensioner)
     res.json(pensioner);
 
   } catch (err) {
