@@ -63,6 +63,23 @@ app.get("/pensioner/:aadhaar", async (req, res) => {
   }
 }); 
 
+app.get("/pensioner", async (req, res) => {
+ 
+
+  try {
+    const pensioner = await pensionerSchema.find({ }, req.body);
+    if (!pensioner) {
+      return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
+    }
+    console.log(pensioner)
+    res.json(pensioner);
+
+  } catch (err) {
+    return res.json(err)
+  }
+}); 
+
+
 
 
 

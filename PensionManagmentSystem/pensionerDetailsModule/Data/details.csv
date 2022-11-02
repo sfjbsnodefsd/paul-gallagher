@@ -1,4 +1,4 @@
-id,Aadhaar,Name,Dob,Pan,Salary,Allowences,SelfOrFamily,BankName,BankNumber,PublicOrPrivate
+id,Aadhaar,Name,Dob,Pan,Salary,Allowances,SelfOrFamily,BankName,BankNumber,PublicOrPrivate
 1,999991,Paul_Gallagher,51,364758374,62000,200,Self,BOI,8475635,Private
 2,999992,Paul_Gallagher,51,364758374,62000,200,Self,BOI,8475635,Private
 3,999993,Paul_Gallagher,51,364758374,62000,200,Self,BOI,8475635,Private

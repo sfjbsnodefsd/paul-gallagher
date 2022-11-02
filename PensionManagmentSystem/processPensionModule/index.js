@@ -1,39 +1,29 @@
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose');
-const pensionerSchema = require('./Model');
+const pensionerSchema = require('../pensionerDetailsModule/pensionerSchema');
 const csv = require('csvtojson')
 const isAuthenticated = require("../isAuthenticated")
 const request = require("request")
 app.use(express.json());
 
-
 mongoose.connect(
     "mongodb://localhost:27017/pensioner-details",
     {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
     },
     () => {
-      console.log(`pensioner-details DB is Connected`);
+        console.log(`pensioner-details DB is Connected`);
     }
-  );
-  app.get("/ProcessPension/:aadhaar", async (req, res) => {
-    const { aadhaar } = req.params.aadhaar;
+);
+/*app.post("/ProcessPension/:aadhaar", async (req, res) => {
+  const  aadhaar  = req.params.aadhaar;
+  console.log(`This is your ${aadhaar}`);*/
+
+returnPension = async (req, res) => {
     try {
-        const pensioner = await pensionerSchema.findOne({ Aadhaar: aadhaar }, req.body);
-        if (!pensioner) {
-          return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
-        }
-        console.log(pensioner)
-        res.json(pensioner);
-    
-      } catch (err) {
-        return res.json(err)
-      }
-       
-    /*try {
-        const pensioner = await getPensionDetails(aadhaar) 
+        const pensioner = await getPensionDetails(aadhaar)
         const { Salary, Allowances, SelfOrFamily, PublicOrPrivate } = pensioner;
         const percentage = getPercentage(SelfOrFamily);
         console.log(SelfOrFamily)
@@ -42,57 +32,76 @@ mongoose.connect(
         const _serviceCharge = getServiceCharge(PublicOrPrivate);
         //return result
         res.status(200).json(
-             _pensionAmount,
-             _serviceCharge
+            console.log(_pensionAmount),
+            console.log(_serviceCharge)
         );
 
-    
+
 
     } catch (err) {
         throw err;
-    }*/
+    }
 
-});
+}
+
+app.post("/ProcessPension/:aadhaar", async (req, res) => {
+    const aadhaar = req.params.aadhaar;
+    console.log(`This is your ${aadhaar}`)
+    const pensionerDetails = await getPensionDetails(aadhaar)
+    const personName = pensionerDetails.Name;
+    const { Salary, Allowances, SelfOrFamily, PublicOrPrivate } = pensionerDetails;
+    const percentage = getPercentage(SelfOrFamily);
+    console.log(SelfOrFamily)
+
+    const _pensionAmount = (percentage * Salary) + Allowances;
+    const _serviceCharge = getServiceCharge(PublicOrPrivate);
+    //return result
+    console.log(_pensionAmount)
+    res.status(200).json(
+        { pension: _pensionAmount, Bank: _serviceCharge, Person: pensionerDetails }
+
+    );
+    console.log(personName)
+    //console.log(pensionerDetails)
+
+
+})
 
 
 
 
 
 
- 
-  
-  const getPensionDetails = (aadhaar) => {
+const getPensionDetails = (aadhaar) => {
 
-    return new Promise((resolve,reject) =>{
+    return new Promise((resolve, reject) => {
         try {
-           
+
             const url = `http://localhost:5001/pensioner/${aadhaar}`
             request.get(url, { json: true }, (err, result, body) => {
                 if (err) {
                     console.log(err);
-                    reject(err) ;
+                    reject(err);
                 }
                 else
-                    resolve(body) ;
+                    resolve(body);
             });
         } catch (err) {
             console.log(err);
-            reject(err) ;
+            reject(err);
         }
-    
+
     });
-  };
-  const getPercentage = (SelfOrFamily) => {
+};
+const getPercentage = (SelfOrFamily) => {
     var percentage = 0;
     if (SelfOrFamily !== null) {
-        switch (SelfOrFamily)
-      
-        {
+        switch (SelfOrFamily) {
             case "Self":
-                percentage =  .80;
+                percentage = .80;
                 break;
             case "Family":
-                percentage =  .50;
+                percentage = .50;
                 break;
 
         }
