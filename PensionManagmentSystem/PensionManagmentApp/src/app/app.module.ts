@@ -9,6 +9,7 @@ import { RegisteredUserComponent } from './Components/registered-user/registered
 import { HomeComponent } from './Components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PensionQuoteComponent } from './Components/pension-quote/pension-quote.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     UserFormComponent,
     RegisteredUserComponent,
-    HomeComponent
+    HomeComponent,
+    PensionQuoteComponent
   ],
   imports: [
     BrowserModule,
