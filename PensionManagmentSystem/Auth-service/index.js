@@ -1,49 +1,66 @@
-const express = require('express')
+const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
-const mongoose = require('mongoose');
-const data = require('./data')
-
+const PORT = 5000;
+const User = require("./User");
+const jwt = require("jsonwebtoken");
+app.use(express.json());
 
 mongoose.connect(
-    "mongodb://localhost:27017/pension-auth",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    },
-    () => {
-      console.log(`pension-auth DB is Connected`);
+  "mongodb://localhost:27017/pension-auth",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => {
+    console.log(`pension DB  Connected`);
+  }
+);
+
+
+app.post("/auth/reg", async (req, res) => {
+  const { email, password, name } = req.body;
+
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    return res.json({ sucess: 0, message: "User already exists" });
+  } else {
+    const newUser = new User({
+      name,
+      email,
+      password,
+    });
+    newUser.save();
+    return res.json(newUser);
+  }
+});
+
+
+
+app.post("/auth/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.json({ sucess: 0, message: "User dose not exist" });
+  } else {
+    if (password !== user.password) {
+      return res.json({ sucess: 0, message: "Incorrect password" });
     }
-  );
-  
-  app.get('/', (req, res) => {
-    res.send('homePage')
-  })
-  
- /*
-  app.get('/api/pensioner/:Aadhaar', (req, res) => {
-    const { Aadhaar } = req.params
-  
-    const singlePensioner = data.pensioner_details.find(
-      (pensioner) => pensioner.Aadhaar === Number(Aadhaar)
-    )
-    if (!singlePensioner) {
-      return res.status(404).send('Invalid pensioner detail provided, please provide valid detail.')
-    }
-  
-    return res.json(singlePensioner)
-  })
-  
-  app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
-    console.log(req.params)
-    res.send('hello world')
-  })
-*/
+    const payload = {
+      email,
+      name: user.name,
+    };
+    jwt.sign(payload, "secret", (err, token) => {
+      if (err) console.log(err);
+      else {
+        return res.json({ token: token });
+      }
+    });
+  }
+});
 
 
-
-
-
-app.listen(5000, (req, res) => {
-    console.log('This is your Auth service on 5000')
-
-})
+app.listen(PORT, () => {
+  console.log(`pension-auth running joyfully at ${PORT}`);
+});

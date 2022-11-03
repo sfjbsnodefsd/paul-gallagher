@@ -12,7 +12,7 @@ const stream = kafka.createWriteStream(
 function queueMessage(){
     const success = stream.write(Buffer.from("Hey my name is Pauly"))
     if(success){
-      console.log("message published success")
+      console.log("message published, Great success!!!")
     }else {
       console.log("something went wrong")
     }
