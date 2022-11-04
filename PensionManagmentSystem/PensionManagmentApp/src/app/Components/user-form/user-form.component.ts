@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import * as bodyParser from 'body-parser';
+import { request, response } from 'express';
 import User from 'src/app/Entity/User';
 import { UserService } from "src/app/Services/user.service"
+import { WebRequestService } from 'src/app/web-request.service';
 
 @Component({
   selector: 'app-user-form',
@@ -10,21 +13,17 @@ import { UserService } from "src/app/Services/user.service"
 export class UserFormComponent implements OnInit {
   title = 'Fill out the form below';
   // to access the data of this variable in out html file use {{variable name}}
-  user: User = new User();
+ 
 
-  save() {
-    const observables = this.userService.saveUser(this.user);
-    observables.subscribe(
-      (response: any) => {
-        console.log(response);
-      },
-      function (error: any) {
-        console.log(error);
-      }
-    );
+  constructor(private service: WebRequestService) {}
+
+  ngOnInit() {
+
+}
+ 
+  
+  
+  registerUser() {
+    
   }
-
-  constructor(private userService: UserService) {}
-
-  ngOnInit(): void {}
 }
