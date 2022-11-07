@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { WebRequestService } from './web-request.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PensionerDetailsSchema} from './Entity/Model'
 @Injectable({
   providedIn: 'root'
 })
@@ -9,18 +10,8 @@ export class RegisterService {
 
   constructor(private service: WebRequestService) { }
 
-  registerUser(Pensioner: {Aadhaar:Number,
-
-  Name:String,
-  Dob:String,
-  Pan: Number,
-  Salary:Number,
-  Allowances: Number,
-  SelfOrFamily: String,
-  BankName: String,
-  BankNumber:Number,
-  PublicOrPrivate: String}) {
-   return  this.http.service('auth/reg',  Pensioner );
+  registerUser(PensionerDetailsSchema) {
+   return  this.http.service('auth/reg',  PensionerDetailsSchema );
 
   }
 }
