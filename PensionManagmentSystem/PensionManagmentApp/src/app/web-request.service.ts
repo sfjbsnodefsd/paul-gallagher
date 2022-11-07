@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterService } from './register.service';
 import * as bodyParser from 'body-parser';
-import {PensionerDetailsSchema} from './Entity/Model'
+import {PensionerDetailsSchema} from './Entity/Model';
+import { map } from 'rxjs/operators';
+import { response } from 'express';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,17 +21,15 @@ export class WebRequestService {
     this.Process_URL = 'http://localhost:5006/ProcessPension/:aadhaar'
 
   }
-registerUser( uri : string, PensionerDetailsSchema : any) {
-  console.log("user Registered")
-    return this.http.get(`${this.AUTH_ROOT_URL}/${uri}`, PensionerDetailsSchema)
-   
-  }
+registerUseraddProduct(context: any) {
+  return this.http.post(`$this.http_product_url`, JSON.stringify(context.response, Response => response.json()));
+}
   
   getPensioners() {
     return this.http.get(this.Pensioner_Detail_URL)   //get body response
     }
 
-  pensionAmount(PensionerDetailsSchema) {
+  pensionAmount(Aadharr: Number, PensionerDetailsSchema) {
     return this.http.get(this.Process_URL, PensionerDetailsSchema)
   }
     
