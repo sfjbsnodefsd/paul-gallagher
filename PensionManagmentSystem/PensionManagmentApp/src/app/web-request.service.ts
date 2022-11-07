@@ -11,11 +11,7 @@ export class WebRequestService {
 
   constructor(private http: HttpClient) { 
     this.ROOT_URL = 'http://localhost:5000';
-  
-
-  }
-registerUser() {
-    return this.ROOT_URL.http.post('auth/reg', {Aadhaar:Number,
+    const pensioner = {Aadhaar:Number,
 
       Name:String,
       Dob:String,
@@ -25,6 +21,12 @@ registerUser() {
       SelfOrFamily: String,
       BankName: String,
       BankNumber:Number,
-      PublicOrPrivate: String})
+      PublicOrPrivate: String}
+
+  }
+registerUser( uri : string, pensioner : any) {
+  console.log("user Registered")
+    return this.http.post(`${this.ROOT_URL}/${uri}`, pensioner)
+   
   }
 }

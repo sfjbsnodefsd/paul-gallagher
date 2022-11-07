@@ -20,7 +20,7 @@ export class RegisterService {
   BankName: String,
   BankNumber:Number,
   PublicOrPrivate: String}) {
-   return  this.http.service('auth/reg', { Pensioner });
+   return  this.http.service('auth/reg',  Pensioner );
 
   }
 }
