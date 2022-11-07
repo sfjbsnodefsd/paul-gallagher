@@ -28,7 +28,7 @@ registerUser( uri : string, PensionerDetailsSchema : any) {
     return this.http.get(this.Pensioner_Detail_URL)   //get body response
     }
 
-  pensionAmount(Aadharr: Number, PensionerDetailsSchema) {
+  pensionAmount(PensionerDetailsSchema) {
     return this.http.get(this.Process_URL, PensionerDetailsSchema)
   }
     
