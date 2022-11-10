@@ -22,7 +22,7 @@ export class WebRequestService {
 
   }
 registerUseraddProduct(context: any) {
-  return this.http.post(`$this.http_product_url`, JSON.stringify(context.response, Response => response.json()));
+  return this.http.post(`$http://localhost:5000`, JSON.stringify(context.response, () => response.json()));
 }
   
   getPensioners() {
