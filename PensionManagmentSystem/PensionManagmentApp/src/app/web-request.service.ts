@@ -5,7 +5,7 @@ import * as bodyParser from 'body-parser';
 import {PensionerDetailsSchema} from './Entity/Model';
 import { map } from 'rxjs/operators';
 import { response } from 'express';
-
+import { Url } from 'url';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,9 +21,9 @@ export class WebRequestService {
     this.Process_URL = 'http://localhost:5006/ProcessPension/:aadhaar'
 
   }
-registerUseraddProduct(context: any) {
-  return this.http.post(`$http://localhost:5000`, JSON.stringify(context.response, () => response.json()));
-}
+//registerUser(context: any) {
+  //return this.http.post(`$http://localhost:5000`, JSON.stringify(context.response, () => response.json()));
+// }
   
   getPensioners() {
     return this.http.get(this.Pensioner_Detail_URL)   //get body response

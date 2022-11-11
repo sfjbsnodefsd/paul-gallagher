@@ -3,6 +3,10 @@ const app = express();
 const mongoose = require('mongoose');
 const csv = require("csvtojson");
 const pensionerSchema = require('./pensionerSchema');
+var cors = require('cors') //enabled cors for ports
+
+ 
+app.use(cors({origin: 'http://localhost:4200'}))
 
 mongoose.connect(
   "mongodb://localhost:27017/pensioner-details",
