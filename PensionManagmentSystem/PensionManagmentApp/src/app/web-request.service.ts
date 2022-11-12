@@ -26,7 +26,8 @@ export class WebRequestService {
 // }
   
   getPensioners() {
-    return this.http.get(this.Pensioner_Detail_URL)   //get body response
+    return this.http.get(this.Pensioner_Detail_URL)
+      //get body response
     }
 
   pensionAmount(Aadharr: Number, PensionerDetailsSchema) {
