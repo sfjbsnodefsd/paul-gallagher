@@ -9,75 +9,75 @@
         
         
             
-            <!-- Back Side -->
+            
             <div class="face back">
               <div class="card-body">
                 <div class="form-header primary-color">
                   <h3 class="font-weight-500 my-2 py-1"><i class="fas fa-plus"></i>Register User</h3>
                 </div>
-								<form method="POST" action="pensioner-details.pensioners">
+								<form #f="ngForm" (ngSubmit)="onSubmit(f)"  method="POST" action="pensioner-details.pensioners">
                   <!-- Register Form-->
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="Aadhaar"  Aadhaar="Aadhaar" class="form-control validate" placeholder="Aadharr" require autofocus>
+                    <input type="Aadhaar"  Aadhaar="Aadhaar" class="form-control validate" placeholder="Aadharr" require autofocus #Aadaar>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="name"  name="name" class="form-control validate" placeholder="Name">
+                    <input type="name"  name="name" class="form-control validate" placeholder="Name" #Name>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="email"  name="email" class="form-control validate" placeholder="email">
+                    <input type="email"  name="email" class="form-control validate" placeholder="email" #email>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-lock prefix grey-text d-flex"></i>
-                    <input  type="password"  name="password" class="form-control validate" placeholder="Password">
+                    <input  type="password"  name="current-password" class="form-control validate" placeholder="Password" #Password >
                   </div>
 
             
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="Dob"  Dob="Dob" class="form-control validate" placeholder="DD/MM/YYYY">
+                    <input type="Dob"  name="Dob" class="form-control validate" placeholder="DD/MM/YYYY" #Dob>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="Pan" Pan="Pan" class="form-control validate" placeholder="PAN">
+                    <input type="Pan" name="Pan" class="form-control validate" placeholder="PAN" #PAN>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="Salary"  Salary="Salary" class="form-control validate" placeholder="Salary">
+                    <input type="Salary"  name="Salary" class="form-control validate" placeholder="Salary" #Salary>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="Allowances"  Allowances="Allowances" class="form-control validate" placeholder="Allowences">
+                    <input type="Allowances"  Allowances="Allowances" class="form-control validate" placeholder="Allowences" #Allowances>
 
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="SelfOrFamily"  SelfOrFamily="SelfOrFamily" class="form-control validate" placeholder="Self or Family Pension">
+                    <input type="SelfOrFamily"  SelfOrFamily="SelfOrFamily" class="form-control validate" placeholder="Self or Family Pension" #SelfOrFamily>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="BankName"  BankName="BankName" class="form-control validate" placeholder="Name of Bank">
+                    <input type="BankName"  BankName="BankName" class="form-control validate" placeholder="Name of Bank" #BankName>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="BankNumber"  BankNumber="BankNumber" class="form-control validate" placeholder="Bank Number">
+                    <input type="BankNumber"  BankNumber="BankNumber" class="form-control validate" placeholder="Bank Number" #BankNumber>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="PublicOrPrivate"  PublicOrPrivate="PublicOrPrivate" class="form-control validate" placeholder="Public or Private Bank">
+                    <input type="PublicOrPrivate"  PublicOrPrivate="PublicOrPrivate" class="form-control validate" placeholder="Public or Private Bank" #PublicOrPrivate>
                   </div>
 
                   
@@ -88,17 +88,17 @@
                   </div>
 
                   <div class="text-center">
-                    <button type="sumbit" class="btn primary-color white-text btn-lg" (click)="registerUser()" >Register User</button>
+                    <button type="sumbit" class="btn primary-color white-text btn-lg" (click)="onRegisterUser()" >Register User</button>
                   </div>
                   <!-- Register Form-->
 								</form>
               </div>
             </div>
-            <!-- Back Side -->
+       
 
           </div>
         </div>
-        <!-- Rotating card -->
+    
 
         
       </div>

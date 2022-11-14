@@ -6,9 +6,12 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { UserFormComponent } from './Components/user-form/user-form.component';
 import { RegisteredUserComponent } from './Components/registered-user/registered-user.component';
 import { HomeComponent } from './Components/home/home.component';
-import { FormsModule, NgForm,  ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PensionQuoteComponent } from './Components/pension-quote/pension-quote.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input'
+
 
 
 @NgModule({
@@ -21,6 +24,9 @@ import { PensionQuoteComponent } from './Components/pension-quote/pension-quote.
     PensionQuoteComponent,
     
    
+
+    
+   
    
     
     
@@ -31,10 +37,15 @@ import { PensionQuoteComponent } from './Components/pension-quote/pension-quote.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-   
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+   
+    
+
+    
     
    
   ],

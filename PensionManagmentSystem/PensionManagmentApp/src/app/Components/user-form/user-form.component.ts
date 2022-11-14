@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as bodyParser from 'body-parser';
 import { request, response } from 'express';
-
-import { UserService } from "src/app/Services/user.service"
-import { WebRequestService } from 'src/app/web-request.service';
 import { HttpClientModule } from '@angular/common/http';
-import { RegisterService } from 'src/app/register.service';
+import { FormsModule, NgForm } from '@angular/forms';
 
 
 export class Pensioner {
@@ -37,24 +34,31 @@ export class Pensioner {
   styleUrls: ['./user-form.component.css'],
 })
 export class UserFormComponent implements OnInit {
-[x: string]: any;
+
+  onRegisterUser() {
+    alert("User Registerd");
+  }
+
+  onSubmit(f:NgForm) {
+    console.log(f.value);
+
+  }
   title = 'Fill out the form below';
   // to access the data of this variable in out html file use {{variable name}}
  
 pensioner: Pensioner[];
-  constructor(private service: WebRequestService )
+  constructor()
   {}
   ngOnInit() {
 
 }
- 
-  
-  
-  registerUser() {
-    this.service.getPensioners().subscribe((res) => {
-      console.log(res)
-      this.service.Pensioner_Detail_URL
-    })
-    
-  }
 }
+  
+// registerUser() {
+//     this.service.getPensioners().subscribe((res) => {
+//       console.log(res)
+//       this.service.Pensioner_Detail_URL
+//     })
+//   }
+//   }
+// 

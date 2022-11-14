@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RegisterService } from './register.service';
+
 import * as bodyParser from 'body-parser';
-import {PensionerDetailsSchema} from './Entity/Model';
+import {PensionerDetailsSchema} from '../Entity/Model';
 import { map } from 'rxjs/operators';
 import { response } from 'express';
 import { Url } from 'url';
