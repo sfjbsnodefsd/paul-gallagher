@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as bodyParser from 'body-parser';
 import { request, response } from 'express';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, NgForm } from '@angular/forms';
+
 
 
 export class Pensioner {
@@ -33,15 +34,27 @@ export class Pensioner {
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css'],
 })
+
+
 export class UserFormComponent implements OnInit {
+  enteredDetails = "";
+  registeredUser = "";
+@Output() postCreated = new EventEmitter();
 
   onRegisterUser() {
-    alert("User Registerd");
+    this.registeredUser = this.enteredDetails
   }
 
-  onSubmit(f:NgForm) {
-    console.log(f.value);
+  onSubmit(form: NgForm) {
+   const post = {
+    Aadhaar: form.value.Aadhaar
+   };
+   this.postCreated.emit(post)
 
+  }
+
+  display(details: any) {
+    console.log(details)
   }
   title = 'Fill out the form below';
   // to access the data of this variable in out html file use {{variable name}}
