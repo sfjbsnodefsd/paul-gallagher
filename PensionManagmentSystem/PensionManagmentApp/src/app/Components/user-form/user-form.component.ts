@@ -3,28 +3,10 @@ import * as bodyParser from 'body-parser';
 import { request, response } from 'express';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Pensioner } from './user-form.model';
+import { RegisterService } from 'src/app/Services/register.service';
 
 
-
-export class Pensioner {
-  constructor(
-    id: Number,
-    Aadhaar: Number, 
-    Name: String,
-    Dob: String,
-    Pan: Number,
-    Salary: Number,
-    Allowances: Number,
-    SelfOrFamily: String, 
-    BankName: String,
-    BankNumber: Number,
-    PublicOrPrivate: String
-
-
-  ) {
-
-  }
-}
 
 
 
@@ -39,39 +21,35 @@ export class Pensioner {
 export class UserFormComponent implements OnInit {
   enteredDetails = "";
   registeredUser = "";
-@Output() postCreated = new EventEmitter();
+  newUser: Pensioner[] = []
 
-  onRegisterUser() {
-    this.registeredUser = this.enteredDetails
+  constructor(public registerPensioner: RegisterService) {}
+  ngOnInit() {
+   
+  }
+
+  onRegisterUser(newUser) {
+    this.newUser.push(newUser)
   }
 
   onSubmit(form: NgForm) {
-   const post = {
-    Aadhaar: form.value.Aadhaar
+    if (form.invalid) {
+      return;
    };
-   this.postCreated.emit(post)
-
+   this.registerPensioner.getPensioner()
+   
+  //  Aadhaar: undefined,
+  //  Name: undefined,
+  //  Dob: undefined,
+  //  Pan: undefined,
+  //  Salary: undefined,
+  //  Allowances: undefined,
+  //  SelfOrFamily: undefined,
+  //  BankName: undefined,
+  //  BankNumber: undefined,
+  //  PublicOrPrivate: undefined
   }
 
   display(details: any) {
     console.log(details)
-  }
-  title = 'Fill out the form below';
-  // to access the data of this variable in out html file use {{variable name}}
- 
-pensioner: Pensioner[];
-  constructor()
-  {}
-  ngOnInit() {
-
-}
-}
-  
-// registerUser() {
-//     this.service.getPensioners().subscribe((res) => {
-//       console.log(res)
-//       this.service.Pensioner_Detail_URL
-//     })
-//   }
-//   }
-// 
+  }}

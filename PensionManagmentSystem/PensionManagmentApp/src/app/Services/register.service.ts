@@ -1,17 +1,41 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Pensioner } from '../Components/user-form/user-form.model';
+import { Subject } from 'rxjs';
 
-import * as bodyParser from 'body-parser';
-import {PensionerDetailsSchema} from '../Entity/Model';
-import { map } from 'rxjs/operators';
-import { response } from 'express';
-import { Url } from 'url';
-@Injectable({
-  providedIn: 'root'
-})
-export class WebRequestService {
-  pensioners : PensionerDetailsSchema[] = []
-  readonly AUTH_ROOT_URL;
+@Injectable({providedIn: 'root' })
+
+export class RegisterService {
+  private pensioner: Pensioner[] = [];
+  private pensionerUpdated = new Subject<Pensioner[]>();
+
+
+getPensioner() {
+  return [...this.pensioner];
+}
+
+getPensionerUpdatedListener() {
+ return this.pensionerUpdated.asObservable();
+}
+
+addPensioner(pensioner: Pensioner) {
+ const newPensioner: Pensioner = {
+  
+   Aadhaar: undefined,
+   Name: undefined,
+   Dob: undefined,
+   Pan: undefined,
+   Salary: undefined,
+   Allowances: undefined,
+   SelfOrFamily: undefined,
+   BankName: undefined,
+   BankNumber: undefined,
+   PublicOrPrivate: undefined
+ };
+ this.pensioner.push(newPensioner);
+ this.pensionerUpdated.next([...this.pensioner])
+}
+  readonly AUTH_ROOT_URL: string;
   Pensioner_Detail_URL: string;
   Process_URL:string 
   
@@ -25,12 +49,12 @@ export class WebRequestService {
   //return this.http.post(`$http://localhost:5000`, JSON.stringify(context.response, () => response.json()));
 // }
   
-  getPensioners() {
+  getAllPensioners() {
     return this.http.get(this.Pensioner_Detail_URL)
       //get body response
     }
 
-  pensionAmount(Aadharr: Number, PensionerDetailsSchema) {
+  pensionAmount(Aadharr: Number, PensionerDetailsSchema: { headers?: HttpHeaders | { [header: string]: string | string[]; }; context?: HttpContext; observe?: "body"; params?: HttpParams | { [param: string]: string | number | boolean | readonly (string | number | boolean)[]; }; reportProgress?: boolean; responseType: "arraybuffer"; withCredentials?: boolean; }) {
     return this.http.get(this.Process_URL, PensionerDetailsSchema)
   }
     

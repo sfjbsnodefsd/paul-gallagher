@@ -15,69 +15,69 @@
                 <div class="form-header primary-color">
                   <h3 class="font-weight-500 my-2 py-1"><i class="fas fa-plus"></i>Register User</h3>
                 </div>
-								<form #f="ngForm" (ngSubmit)="onSubmit(postForm)" #postForm="ngForm" value="any"   name="formName"  method="POST" action="pensioner-details.pensioners">
+								<form #f="ngForm" (ngSubmit)="onSubmit(postForm)" #postForm="ngForm"  name="formName"  method="POST" action="pensioner-details.pensioners">
                   <!-- Register Form-->
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input type="Number" [(ngModel)]="pensioner"  name="Aadhaar" class="form-control validate" placeholder="Aadharr" require autofocus #Aadaar>
+                    <input type="Number" ngModel name="Aadhaar" class="form-control validate" placeholder="Aadharr" require autofocus #Aadaar>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input  type="name" [(ngModel)]="pensioner"  name="name" class="form-control validate" placeholder="Name" #Name>
+                    <input  type="name" ngModel  name="name" class="form-control validate" placeholder="Name" #Name>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input  type="email" [(ngModel)]="pensioner"  name="email" class="form-control validate" placeholder="email" #email>
+                    <input  type="email" ngModel  name="email" class="form-control validate" placeholder="email" #email>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-lock prefix grey-text d-flex"></i>
-                    <input  type="password" [(ngModel)]="pensioner"  name="current-password" class="form-control validate" placeholder="Password" #Password >
+                    <input  type="password" ngModel  name="current-password" class="form-control validate" placeholder="Password" #Password >
                   </div>
 
             
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input  type="Dob" [(ngModel)]="pensioner"  name="Dob" class="form-control validate" placeholder="DD/MM/YYYY" #Dob>
+                    <input  type="Dob" ngModel  name="Dob" class="form-control validate" placeholder="DD/MM/YYYY" #Dob>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input  type="Pan" [(ngModel)]="pensioner"  name="Pan" class="form-control validate" placeholder="PAN" #PAN>
+                    <input  type="Pan" ngModel   name="Pan" class="form-control validate" placeholder="PAN" #PAN>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input  type="Salary" [(ngModel)]="pensioner"  name="Salary" class="form-control validate" placeholder="Salary" #Salary>
+                    <input  type="Salary" ngModel   name="Salary" class="form-control validate" placeholder="Salary" #Salary>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input  type="Allowances" [(ngModel)]="pensioner"  name="Allowances" class="form-control validate" placeholder="Allowences" #Allowances>
+                    <input  type="Allowances"   name="Allowances" class="form-control validate" placeholder="Allowences" #Allowances>
 
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input  type="SelfOrFamily" [(ngModel)]="pensioner"  name="SelfOrFamily" class="form-control validate" placeholder="Self or Family Pension" #SelfOrFamily>
+                    <input  type="SelfOrFamily" ngModel   name="SelfOrFamily" class="form-control validate" placeholder="Self or Family Pension" #SelfOrFamily>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input  type="BankName" [(ngModel)]="pensioner"  name="BankName" class="form-control validate" placeholder="Name of Bank" #BankName>
+                    <input  type="BankName" ngModel    name="BankName" class="form-control validate" placeholder="Name of Bank" #BankName>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input  type="BankNumber" [(ngModel)]="pensioner"  name="BankNumber" class="form-control validate" placeholder="Bank Number" #BankNumber>
+                    <input  type="BankNumber" ngModel   name="BankNumber" class="form-control validate" placeholder="Bank Number" #BankNumber>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-                    <input  type="PublicOrPrivate" [(ngModel)]="pensioner"  name="PublicOrPrivate" class="form-control validate" placeholder="Public or Private Bank" #PublicOrPrivate>
+                    <input  type="PublicOrPrivate" ngModel   name="PublicOrPrivate" class="form-control validate" placeholder="Public or Private Bank" #PublicOrPrivate>
                   </div>
 
                   
@@ -88,7 +88,7 @@
                   </div>
 
                   <div class="text-center">
-                    <button type="sumbit" class="btn primary-color white-text btn-lg" (click)="display(Salary.value)" >Register User</button>
+                    <button type="sumbit" class="btn primary-color white-text btn-lg" (click)="display(postForm)" >Register User</button>
                     <p>{{registeredUser}} </p>
                   </div>
                   
