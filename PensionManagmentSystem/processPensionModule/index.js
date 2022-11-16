@@ -1,10 +1,11 @@
-const express = require('express')
+const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const pensionerSchema = require('../pensionerDetailsModule/pensionerSchema');
-const csv = require('csvtojson')
-const isAuthenticated = require("../isAuthenticated")
-const request = require("request")
+const csv = require('csvtojson');
+const isAuthenticated = require("../isAuthenticated");
+const request = require("request");
+const bodyParser = require("body-parser")
 app.use(express.json());
 
 mongoose.connect(
@@ -20,6 +21,8 @@ mongoose.connect(
 /*app.post("/ProcessPension/:aadhaar", async (req, res) => {
   const  aadhaar  = req.params.aadhaar;
   console.log(`This is your ${aadhaar}`);*/
+  app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false}));
 
 returnPension = async (req, res) => {
     try {

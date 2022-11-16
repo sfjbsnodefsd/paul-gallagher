@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Pensioner } from '../Components/user-form/user-form.model';
 import { Subject } from 'rxjs';
+import { response } from 'express';
 
 @Injectable({providedIn: 'root' })
 
@@ -10,7 +11,7 @@ export class RegisterService {
   private pensionerUpdated = new Subject<Pensioner[]>();
 
   constructor(private http: HttpClient) { 
-    this.AUTH_ROOT_URL = 'http://localhost:5000';
+    this.AUTH_ROOT_URL = 'http://localhost:5000/auth/reg';
     this.Pensioner_Detail_URL ='http://localhost:5001/pensioner';
     this.Process_URL = 'http://localhost:5006/ProcessPension/:aadhaar'
 
@@ -18,8 +19,9 @@ export class RegisterService {
 getPensioner() {
   this.http.get<{message: string, pensioner: Pensioner[]}>('http://localhost:5001/pensioner')
   .subscribe((pensionerData) => {
-     this.pensioner = pensionerData.pensioner;
- return  this.pensionerUpdated.next([...this.pensioner]);
+    console.log(pensionerData)
+  this.pensioner = pensionerData.pensioner;
+  this.pensionerUpdated.next([...this.pensioner]);
   });
 }
 
@@ -39,11 +41,18 @@ addPensioner(pensioner: Pensioner) {
    SelfOrFamily: undefined,
    BankName: undefined,
    BankNumber: undefined,
-   PublicOrPrivate: undefined
+   PublicOrPrivate: undefined };
+   this.http.post<{message: string}>('http://localhost:5000/auth/reg', newPensioner)
+ .subscribe((responseData) => {
+  console.log(responseData.message);
+  this.pensioner = []
+  this.pensioner.push(newPensioner);
+  this.pensionerUpdated.next([...this.pensioner]);
+ })
  };
- this.pensioner.push(newPensioner);
- this.pensionerUpdated.next([...this.pensioner])
-}
+ 
+ 
+
   readonly AUTH_ROOT_URL: string;
   Pensioner_Detail_URL: string;
   Process_URL:string 

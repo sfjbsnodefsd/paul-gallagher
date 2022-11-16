@@ -36,19 +36,20 @@ export class UserFormComponent implements OnInit {
     if (form.invalid) {
       return;
    };
-   this.registerPensioner.getPensioner();
-   form.resetForm();
    
-  //  Aadhaar: undefined,
-  //  Name: undefined,
-  //  Dob: undefined,
-  //  Pan: undefined,
-  //  Salary: undefined,
-  //  Allowances: undefined,
-  //  SelfOrFamily: undefined,
-  //  BankName: undefined,
-  //  BankNumber: undefined,
-  //  PublicOrPrivate: undefined
+   const newUser = {
+   Aadhaar: undefined,
+   Name: undefined,
+   Dob: undefined,
+   Pan: undefined,
+   Salary: undefined,
+   Allowances: undefined,
+   SelfOrFamily: undefined,
+   BankName: undefined,
+   BankNumber: undefined,
+   PublicOrPrivate: undefined }
+   this.registerPensioner.addPensioner(newUser)
+   form.resetForm();
   }
 
   display(details: any) {

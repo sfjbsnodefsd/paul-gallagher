@@ -1,12 +1,28 @@
-const express = require('express')
+const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const csv = require("csvtojson");
 const pensionerSchema = require('./pensionerSchema');
 var cors = require('cors') //enabled cors for ports
+const bodyParser = require('body-parser');
 
- 
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false}));
+
 app.use(cors({origin: 'http://localhost:4200'}))
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers",
+  "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, DELETE, OPTIONS"
+  );
+  next();
+})
+
 
 mongoose.connect(
   "mongodb://localhost:27017/pensioner-details",

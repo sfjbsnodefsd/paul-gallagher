@@ -11,9 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "all": "^0.0.0",
+    "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "csvtojson": "^2.0.10",
     "flatted": "^3.2.7",
+    "g": "^2.0.1",
     "mongoose": "^6.7.0",
     "nodemon": "^2.0.20"
   }
