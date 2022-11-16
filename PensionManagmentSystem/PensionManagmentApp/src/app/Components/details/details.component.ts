@@ -8,14 +8,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit, OnDestroy {
- pensioner: Pensioner[] =[]
+ pensioner: Pensioner[] = []
  private pensionerSub: Subscription
 
   
 constructor(public registerPensioner: RegisterService) {}
 
   ngOnInit(){
-    this.pensioner = this.registerPensioner.getPensioner();
+    this.registerPensioner.getPensioner();
     this.pensionerSub = this.registerPensioner.getPensionerUpdatedListener()
     .subscribe((pensioner: Pensioner[]) => {
       this.pensioner = pensioner;

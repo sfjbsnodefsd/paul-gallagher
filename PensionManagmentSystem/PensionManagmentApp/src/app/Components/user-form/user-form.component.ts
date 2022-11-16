@@ -36,7 +36,8 @@ export class UserFormComponent implements OnInit {
     if (form.invalid) {
       return;
    };
-   this.registerPensioner.getPensioner()
+   this.registerPensioner.getPensioner();
+   form.resetForm();
    
   //  Aadhaar: undefined,
   //  Name: undefined,

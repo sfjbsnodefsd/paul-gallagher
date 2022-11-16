@@ -9,9 +9,18 @@ export class RegisterService {
   private pensioner: Pensioner[] = [];
   private pensionerUpdated = new Subject<Pensioner[]>();
 
+  constructor(private http: HttpClient) { 
+    this.AUTH_ROOT_URL = 'http://localhost:5000';
+    this.Pensioner_Detail_URL ='http://localhost:5001/pensioner';
+    this.Process_URL = 'http://localhost:5006/ProcessPension/:aadhaar'
 
+  }
 getPensioner() {
-  return [...this.pensioner];
+  this.http.get<{message: string, pensioner: Pensioner[]}>('http://localhost:5001/pensioner')
+  .subscribe((pensionerData) => {
+     this.pensioner = pensionerData.pensioner;
+ return  this.pensionerUpdated.next([...this.pensioner]);
+  });
 }
 
 getPensionerUpdatedListener() {
@@ -39,12 +48,7 @@ addPensioner(pensioner: Pensioner) {
   Pensioner_Detail_URL: string;
   Process_URL:string 
   
-  constructor(private http: HttpClient) { 
-    this.AUTH_ROOT_URL = 'http://localhost:5000';
-    this.Pensioner_Detail_URL ='http://localhost:5001';
-    this.Process_URL = 'http://localhost:5006/ProcessPension/:aadhaar'
-
-  }
+ 
 //registerUser(context: any) {
   //return this.http.post(`$http://localhost:5000`, JSON.stringify(context.response, () => response.json()));
 // }
