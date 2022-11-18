@@ -1,15 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import * as bodyParser from 'body-parser';
-import { request, response } from 'express';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Pensioner } from './user-form.model';
-import { RegisterService } from 'src/app/Services/register.service';
-
-
-
-
-
+import { AddPensionerService } from 'src/app/Services/add-pensioner.service';
+import NewPensioner from "src/app/Entity/Model";
 
 @Component({
   selector: 'app-user-form',
@@ -19,37 +11,28 @@ import { RegisterService } from 'src/app/Services/register.service';
 
 
 export class UserFormComponent implements OnInit {
-  enteredDetails = "";
-  registeredUser = "";
-  newUser: Pensioner[] = []
+ 
+ 
 
-  constructor(public registerPensioner: RegisterService) {}
+  
+
+  constructor(private newPensioner: AddPensionerService) {}
   ngOnInit() {
    
   }
 
-  onRegisterUser(newUser) {
-    this.newUser.push(newUser)
-  }
+
 
   onSubmit(form: NgForm) {
-    if (form.invalid) {
-      return;
-   };
+    console.log(form.value)
+    
+  
    
-   const newUser = {
-   Aadhaar: undefined,
-   Name: undefined,
-   Dob: undefined,
-   Pan: undefined,
-   Salary: undefined,
-   Allowances: undefined,
-   SelfOrFamily: undefined,
-   BankName: undefined,
-   BankNumber: undefined,
-   PublicOrPrivate: undefined }
-   this.registerPensioner.addPensioner(newUser)
-   form.resetForm();
+      }
+
+
+  onAddnewPensioner() {
+    console.log(this.newPensioner)
   }
 
   display(details: any) {
