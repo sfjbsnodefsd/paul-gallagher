@@ -1,5 +1,6 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { request } from "express";
 import { PensionQuote } from "./pensionqoute.model";
 
 
@@ -13,13 +14,14 @@ export class PensionQuoteService {
 
 
 
-pensionQuote(Aadhaar: number, Name:string, password: string,) {
+pensionQuote(Aadhaar: Number) {
 
     {
-        const pensionerQuote: PensionQuote = {Aadhaar:Aadhaar,  Name: Name, password:password, 
-                                     }
-this.http.post("http://localhost:5006/ProcessPension/:aadhaar", pensionerQuote).subscribe(response => {
+        const pensionerQuote: PensionQuote = {Aadhaar: Aadhaar}
+this.http.post("http://localhost:5006/ProcessPension/:aadhaar", pensionerQuote ).subscribe(response => {
     console.log(response)
+   
+    
 })
     }
 }

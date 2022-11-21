@@ -8,7 +8,7 @@ const PensionerDetailSchema = new Schema({
   },
   Aadhaar: { 
     type: Number,
-    required: true 
+    //required: true 
   },
   Name: { 
     type: String,

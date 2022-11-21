@@ -49,7 +49,7 @@ mongoose.connect(
 
 returnPension = async (req, res) => {
     try {
-        const pensioner = await getPensionDetails(aadhaar)
+        const pensioner = await getPensionDetails(Aadhaar)
         const { Salary, Allowances, SelfOrFamily, PublicOrPrivate } = pensioner;
         const percentage = getPercentage(SelfOrFamily);
         console.log(SelfOrFamily)
@@ -98,12 +98,12 @@ app.post("/ProcessPension/:aadhaar", async (req, res) => {
 
 
 
-const getPensionDetails = (aadhaar) => {
+const getPensionDetails = (Aadhaar) => {
 
     return new Promise((resolve, reject) => {
         try {
 
-            const url = `http://localhost:5001/pensioner/${aadhaar}`
+            const url = `http://localhost:5001/pensioner/${Aadhaar}`
             request.get(url, { json: true }, (err, result, body) => {
                 if (err) {
                     console.log(err);
