@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { AddPensionerService } from 'src/app/Services/add-pensioner.service';
-import NewPensioner from "src/app/Entity/Model";
+
 import { AuthService } from './auth.service';
 
 @Component({

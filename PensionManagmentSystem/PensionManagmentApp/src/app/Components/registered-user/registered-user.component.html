@@ -18,20 +18,25 @@
   </div>
 
   <!-- Login Form -->
-  <form  #loginform="ngForm">
+  <form #f="ngForm" (ngSubmit)="onSubmit(postForm)" novalidate #postForm="ngForm" name="formName"  method="POST" action="pensioner-details.pensioners ">
+    <div class="text-center">
+      <i class="fas fa-lock prefix grey-text d-flex"></i>
+      <input type="Aadhaar" name="Aadhaar" ngModel class="form-control validate" placeholder="Aadhaar" #AadhaarInput="ngModel" require >
+      
+    </div>
   <div class="text-center">
     <i class="fas fa-envelope prefix grey-text d-flex"></i>
-    <input type="email" name="email" ngModel class="form-control validate" #emailInput="ngModel" required email>
-    <label for="email" class="d-flex">Your email</label>
+    <input type="email" name="email" ngModel class="form-control validate" placeholder="email" #emailInput="ngModel" required email>
+   
   </div>
 
   <div class="text-center">
     <i class="fas fa-lock prefix grey-text d-flex"></i>
-    <input type="password" name="password" ngModel class="form-control validate" #passwordInput="ngModel" require >
-    <label for="password" class="d-flex">Your password</label>
+    <input type="password" name="password" ngModel class="form-control validate" placeholder="Password"  #passwordInput="ngModel" require >
+    
   </div>
 </form>
   <div class="text-center">
-    <button type="sumbit" class="btn primary-color white-text btn-lg"  >Login</button>
+    <button type="sumbit" class="btn primary-color white-text btn-lg" (click)="onSubmit(postForm)" >Login</button>
   </div>
 
