@@ -6,7 +6,30 @@ const csv = require('csvtojson');
 const isAuthenticated = require("../isAuthenticated");
 const request = require("request");
 const bodyParser = require("body-parser")
+const cors = require("cors")
 app.use(express.json());
+
+app.use(bodyParser.urlencoded({extended: true}))
+//app.use(express.static())
+app.use(bodyParser.json());
+app.use(
+  express.urlencoded({ extended: true })
+);
+  
+
+
+app.use(cors({origin: 'http://localhost:4200'}))
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers",
+  "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, DELETE, OPTIONS"
+  );
+  next();
+})
 
 mongoose.connect(
     "mongodb://localhost:27017/pensioner-details",
@@ -21,8 +44,8 @@ mongoose.connect(
 /*app.post("/ProcessPension/:aadhaar", async (req, res) => {
   const  aadhaar  = req.params.aadhaar;
   console.log(`This is your ${aadhaar}`);*/
-  app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+//   app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false}));
 
 returnPension = async (req, res) => {
     try {

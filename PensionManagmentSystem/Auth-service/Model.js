@@ -2,50 +2,56 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const PensionerDetailSchema = new Schema({
-  id: {
-    type: Number,
-    required: true
-  },
+  
+  
   Aadhaar: { 
     type: Number,
-    required: true 
+    // required: true 
   },
   Name: { 
     type: String,
-    required: true 
+    // required: true 
+  },
+  email: { 
+    type: String,
+    // required: true 
+  },
+  password: { 
+    type: String,
+    // required: true 
   },
   Dob: { 
     type: String,
-    required: true 
+    // required: true 
   },
   Pan: { 
     type: Number,
-    required: true 
+    // required: true 
   },
   Salary: { 
     type: Number,
-    required: true 
+    // required: true 
   },
   Allowances: { 
     type: Number,
-    required: true 
+    // required: true 
   },
   SelfOrFamily: { 
     type: String,
-    required: true,
+    // required: true,
     uppercase: true  
   },
   BankName: { 
     type: String,
-    required: true 
+    // required: true 
   },
   BankNumber: { 
     type: Number,
-    required: true 
+    // required: true 
   },
   PublicOrPrivate: { 
     type: String,
-    required: true,
+    // required: true,
     uppercase: true
   }
   },

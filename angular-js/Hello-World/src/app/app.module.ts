@@ -8,6 +8,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisteredUserComponentComponent } from './components/registered-user-component/registered-user-component.component';
+import { InterpolationDemoComponent } from './components/interpolation-demo/interpolation-demo.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { RegisteredUserComponentComponent } from './components/registered-user-c
     UserFormComponent,
     NavbarComponent,
     HomeComponent,
-    RegisteredUserComponentComponent
+    RegisteredUserComponentComponent,
+    InterpolationDemoComponent
   ],
   imports: [
     BrowserModule,
