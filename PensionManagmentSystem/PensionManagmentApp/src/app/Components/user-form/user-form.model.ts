@@ -1,7 +1,7 @@
 export interface Pensioner {
     
     
-      Aadhaar: Number,
+      Aadhaar: number,
       Name: String,
       email : String,
       password: string, 

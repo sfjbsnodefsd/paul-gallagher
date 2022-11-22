@@ -14,12 +14,13 @@ export class PensionQuoteService {
 
 
 
-pensionQuote(Aadhaar: Number) {
+pensionQuote(Aadhaar: number) {
 
     {
-        const pensionerQuote: PensionQuote = {Aadhaar: Aadhaar}
-this.http.post("http://localhost:5006/ProcessPension/:aadhaar", pensionerQuote ).subscribe(response => {
+        const pensionerQuote: PensionQuote = new PensionQuote();
+this.http.post("http://localhost:5006/ProcessPension",{"Aadhaar": Aadhaar} ).subscribe(response => {
     console.log(response)
+    console.log(pensionerQuote.pension)
    
     
 })

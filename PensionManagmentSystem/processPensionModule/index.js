@@ -70,8 +70,8 @@ returnPension = async (req, res) => {
 
 }
 
-app.post("/ProcessPension/:aadhaar", async (req, res) => {
-    const aadhaar = req.params.aadhaar;
+app.post("/ProcessPension", async (req, res) => {
+    const aadhaar = req.body.Aadhaar;
     console.log(`This is your ${aadhaar}`)
     const pensionerDetails = await getPensionDetails(aadhaar)
     const personName = pensionerDetails.Name;

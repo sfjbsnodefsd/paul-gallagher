@@ -16,7 +16,7 @@ export class PensionQuoteComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (form.invalid) {
       return
-    }this.pensionerQuote.pensionQuote(form.value.Aadhaar,)
+    }this.pensionerQuote.pensionQuote(form.value.Aadhaar)
     
     }
   

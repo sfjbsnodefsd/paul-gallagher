@@ -1,4 +1,5 @@
-export interface PensionQuote {
-    Aadhaar: Number
+export class PensionQuote {
+    Aadhaar: number
+    pension : number
    
 }
