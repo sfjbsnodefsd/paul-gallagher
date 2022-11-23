@@ -84,7 +84,7 @@ app.post("/ProcessPension", async (req, res) => {
     //return result
     console.log(_pensionAmount)
     res.status(200).json(
-        { pension: _pensionAmount, Bank: _serviceCharge, Person: pensionerDetails }
+         [{pension: _pensionAmount, Bank: _serviceCharge}]
 
     );
     console.log(personName)

@@ -6,17 +6,17 @@ import { NgForm } from '@angular/forms';
   templateUrl: './pension-quote.component.html',
   styleUrls: ['./pension-quote.component.css']
 })
-export class PensionQuoteComponent implements OnInit {
+export class PensionQuoteComponent  {
 
   constructor(public pensionerQuote: PensionQuoteService) { }
 
-  ngOnInit(): void {
-  }
+
 
   onSubmit(form: NgForm) {
     if (form.invalid) {
       return
-    }this.pensionerQuote.pensionQuote(form.value.Aadhaar)
+    } this.pensionerQuote.pensionQuote(form.value.Aadhaar)
+    console.log(form.value.Aadhaar)
     
     }
   
@@ -24,4 +24,4 @@ export class PensionQuoteComponent implements OnInit {
       console.log(details)
     }}
 
-
+   
