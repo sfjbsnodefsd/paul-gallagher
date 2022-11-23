@@ -5,7 +5,8 @@ import { RegisteredUserComponent } from './Components/registered-user/registered
 import { UserFormComponent } from './Components/user-form/user-form.component';
 import { PensionQuoteComponent } from './Components/pension-quote/pension-quote.component';
 
-const routes: Routes = [{path:"", component:HomeComponent}, {path:"register", component:UserFormComponent}, {path:"login", component:RegisteredUserComponent}, {path:"pensionquote", component:PensionQuoteComponent}];
+const routes: Routes = [{path:"", component:HomeComponent}, {path:"register", component:UserFormComponent}, 
+{path:"login", component:RegisteredUserComponent}, {path:"pensionquote", component:PensionQuoteComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

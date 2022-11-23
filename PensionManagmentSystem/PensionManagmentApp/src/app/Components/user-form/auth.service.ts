@@ -1,10 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Pensioner } from "./user-form.model";
 
 @Injectable({ providedIn: "root"})
 export class AuthService {
-    constructor (private http: HttpClient) {}
+    constructor (private http: HttpClient, private router: Router) {}
     
     
     
@@ -21,6 +22,7 @@ export class AuthService {
                                       SelfOrFamily:SelfOrFamily, BankName:BankName, BankNumber:BankNumber, PublicOrPrivate:PublicOrPrivate }
 this.http.post("http://localhost:5000/auth/reg", pensioner).subscribe(response => {
     console.log(response)
+    this.router.navigate(["login"])
 })
     }
 
