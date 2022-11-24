@@ -17,7 +17,7 @@ export class AuthService {
     BankName: string, 
     BankNumber: number,
     PublicOrPrivate: string ) {
-        const pensioner: Pensioner = {Aadhaar:Aadhaar, Name:Name, email:email, password:password, 
+        const pensioner: Pensioner = {Aadhaar:Aadhaar, Name:Name, email:email, password: password, 
                                       Dob:Dob, Pan:Pan, Salary:Salary,Allowances:Allowances, 
                                       SelfOrFamily:SelfOrFamily, BankName:BankName, BankNumber:BankNumber, PublicOrPrivate:PublicOrPrivate }
 this.http.post("http://localhost:5000/auth/reg", pensioner).subscribe(response => {

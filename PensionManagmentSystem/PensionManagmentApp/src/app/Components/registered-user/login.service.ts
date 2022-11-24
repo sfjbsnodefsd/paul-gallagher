@@ -30,8 +30,7 @@ export class LoginService {
 login(Aadhaar: number, email:string, password: string,) {
 
     {
-        const pensioner: LoginPensioner = {Aadhaar:Aadhaar,  email:email, password:password, 
-                                     }
+        const pensioner: LoginPensioner = {Aadhaar:Aadhaar,  email:email, password:password}
 this.http.post<{token: string}>("http://localhost:5000/auth/login", pensioner).subscribe(res => {
     const token = res.token
         this.token = token
