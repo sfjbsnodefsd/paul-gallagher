@@ -1,10 +1,15 @@
+<html>
 <<a name="top"></a>
-
+<style>
+  html {
+    background-color: #E8F3D6;
+  }
+</style>
 
 <div class="mask rgba-black-strong h-100">
-  <div class="container py-5">
-    <div class="row">
-      <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto">
+  <div class="container py-5" >
+    <div class="row" >
+      <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto" >
 
         
         
@@ -12,13 +17,13 @@
             
             <div class="face back">
               <div class="card-body">
-                <div class="form-header primary-color">
+                <div class="form-header " >
                   <h3 class="font-weight-500 my-2 py-1"><i class="fas fa-plus"></i>Register User</h3>
                 </div>
                 
-								<form #f="ngForm" (ngSubmit)="onSubmit(postForm)" novalidate #postForm="ngForm"  name="formName"  method="POST" action="pensioner-details.pensioners">
+								<form  #f="ngForm" (ngSubmit)="onSubmit(postForm)" novalidate #postForm="ngForm"  name="formName"  method="POST" action="pensioner-details.pensioners">
                   <!-- Register Form-->
-                  <div class="md-form">
+                  <div class="md-form" >
                     <i class="fas fa-envelope prefix grey-text d-flex"></i>
                     <input type="Number" ngModel name="Aadhaar" class="form-control validate" placeholder="Aadharr" require autofocus #Aadaar="ngModel">
                   </div>
@@ -96,7 +101,6 @@
                   
                   <!-- Register Form-->
 								</form>
-
                
             
        
