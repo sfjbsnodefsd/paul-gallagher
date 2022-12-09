@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const csv = require("csvtojson");
 const pensionerSchema = require('./pensionerSchema');
-var cors = require('cors') //enabled cors for ports
+const cors = require('cors') //enabled cors for ports
 const bodyParser = require('body-parser');
 
 
@@ -43,13 +43,13 @@ mongoose.connect(
 csv()
   .fromFile("./Data/details.csv")
   .then(async (response) => {
-    //console.log(response);
+    
 
     for (var x = 0; x < response.length; x++) {
 
-      //check whether pensioner details already added
+     
       const pensioner = await PensionerDetail.findOne({ Aadhaar: response[x].Aadhaar });
-      if (pensioner) //if exists , continue processing next from for loop
+      if (pensioner) 
         continue;
 
       const importPensionerDetail = new PensionerDetail({

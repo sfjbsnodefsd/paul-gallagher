@@ -41,11 +41,7 @@ mongoose.connect(
         console.log(`pensioner-details DB is Connected`);
     }
 );
-/*app.post("/ProcessPension/:aadhaar", async (req, res) => {
-  const  aadhaar  = req.params.aadhaar;
-  console.log(`This is your ${aadhaar}`);*/
-//   app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false}));
+
 
 returnPension = async (req, res) => {
     try {
@@ -120,7 +116,7 @@ const getPensionDetails = (Aadhaar) => {
     });
 };
 const getPercentage = (SelfOrFamily) => {
-    var percentage = 0;
+    let percentage = 0;
     if (SelfOrFamily !== null) {
         switch (SelfOrFamily) {
             case "Self":
@@ -136,7 +132,7 @@ const getPercentage = (SelfOrFamily) => {
 }
 
 const getServiceCharge = (PublicOrPrivate) => {
-    var serviceCharge = null;
+    let serviceCharge = null;
     if (PublicOrPrivate) {
         switch (PublicOrPrivate.toString().toUpperCase()) {
             case "PRIVATE":
