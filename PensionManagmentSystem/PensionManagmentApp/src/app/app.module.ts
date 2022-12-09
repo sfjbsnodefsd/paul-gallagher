@@ -10,7 +10,8 @@ import { FormsModule,  NgForm,  ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PensionQuoteComponent } from './Components/pension-quote/pension-quote.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatInputModule} from '@angular/material/input'
+import {MatInputModule} from '@angular/material/input';
+import { FooterComponent } from './Components/footer/footer.component'
 
 
 
@@ -23,6 +24,7 @@ import {MatInputModule} from '@angular/material/input'
     RegisteredUserComponent,
     HomeComponent,
     PensionQuoteComponent,
+    FooterComponent,
     
 ],
   imports: [

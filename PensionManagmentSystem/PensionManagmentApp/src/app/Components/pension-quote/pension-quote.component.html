@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE  > <html lang="en">
+  <meta content="text/html; charset=utf-8" />
 
   <style>
     html {
@@ -20,13 +21,13 @@
         <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto">
             
             <div class="form-header primary-color">
-                <h3 class="font-weight-500 my-2 py-1"><i class="fas fa-plus"></i>Pension Quote</h3>
+                <h3 class="font-weight-500 my-2 py-1"><em class="fas fa-plus"></em>Pension Quote</h3>
               </div>
             <form #f="ngForm" (submit)="onSubmit(postForm)" novalidate #postForm="ngForm" name="formName"  method="POST" action="pensioner-details.pensioners">
                
 
                 <div class="md-form">
-                  <i class="fas fa-envelope prefix grey-text d-flex"></i>
+                  <em class="fas fa-envelope prefix grey-text d-flex"></em>
                   <input type="Aadhaar"  ngModel name="Aadhaar" placeholder="Aadhaar" class="form-control validate" require autofocus #Aadaar="ngModel">
                  
                 </div>
@@ -37,7 +38,9 @@
                     
                   </div>
                   <div>
+                    
                   <table class="table" name="PensionQuote">
+                    <caption>View your free Quote here!</caption>
                     <thead>
                       <tr class="table-success">
                         <th scope="col">PensionAmount</th>
