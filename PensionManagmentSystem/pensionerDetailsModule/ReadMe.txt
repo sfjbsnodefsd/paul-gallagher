@@ -1,8 +1,5 @@
 Created csv writer file to create csv file
 
-Index.js running pensioner-details db 
+Contains CRUD operations to Get all pensuioners and pensioner by Aadhaar
 
-
-function to import details csv to Mongo db
-
-created get request to retrieve user data by Aadhaar number
+Populates directly, Mongo DB Database
